@@ -1,0 +1,36 @@
+<p>employee works!</p>  
+
+
+<form name="employeeForm" #employeeForm="ngForm" (ngSubmit)="onSubmit(employeeForm)">
+    <input type="text" name="_id" #_id="ngModel" [(ngModel)]="eservice.selectedEmployee._id">
+            
+              Name :  <input type="text" name="name" #name="ngModel" [(ngModel)]="eservice.selectedEmployee.name"> <br>
+             Salary : <input type="text" name="salary" #salary="ngModel" [(ngModel)]="eservice.selectedEmployee.salary"> <br>
+              <input type="submit" value="Submit" name="submit">
+              <input type="button" value="reset" name="reset" (click)="resetform(employeeForm)">
+              <br>
+             
+          </form>
+      
+          Search By Name : 
+          <input type="text" name="search" #search>
+          <input type="button" name="search" value="search" (click)="onsearch(search.value)">
+      
+          <table border="2">
+              <thead>
+                  <tr>
+                      <th>Name</th>
+                      <th>Salary</th>
+                      <th>delete</th>
+                      <th>Edit</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  
+                  <tr *ngFor="let emp of eservice.employee"> 
+                      <td>{{emp.name}}</td>
+                      <td>{{emp.salary}}</td>
+                      <td (click)="onDelete(emp._id,employeeForm)">Delete</td>
+                      <td (click)="onEdit(emp)">Edit</td> </tr>
+                  </tbody>
+          </table>
